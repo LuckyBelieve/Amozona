@@ -1,8 +1,13 @@
 import { useEffect, useReducer } from "react";
 import axios from 'axios'
-import { Link } from "react-router-dom";
-import { burl } from "../utils/url";
+// import { Link } from "react-router-dom";
+import { Col, Row } from "react-bootstrap";
 import { reducer } from "../reducer/reducer";
+import { burl } from "../utils/url";
+import Product from "../components/product";
+import { Helmet } from "react-helmet-async";
+import LoadingBox from "../components/loadingBox";
+import MessageBox from "../components/messageBox";
 
 const HomeScreen = () => {
     const [{loading,isError,products},dispatch] = useReducer(reducer,{
@@ -24,26 +29,20 @@ const HomeScreen = () => {
     },[]);
     return (
         <div>
+            <Helmet>
+                <title>amazona</title>
+            </Helmet>
             <h1>featured Products</h1>
-            {loading&& <div>loading...</div>}
-            {isError && <div>{isError}</div>}
+            {loading && <LoadingBox/>}
+            {isError && <MessageBox variant="danger">{isError}</MessageBox>}
         <div className="products">
-        {products.map(product=>(
-          <div className="product-card" key={product.slug}>
-            <div className="product-image">
-            <Link to={`/product/${product.slug}`}>
-                <img className="image" src={product.image} alt={product.name}/>
-            </Link>
-            </div>
-            <div className="product-info">
-            <Link to={`/product/${product.slug}`}>
-                <p className="productName">{product.name}</p>
-            </Link>
-            <p><strong>${product.price}</strong></p>
-            <button>Add to cart</button>
-            </div>
-          </div>
-        ))}
+        <Row>
+            { products && products.map(product=>(
+             <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
+             <Product product={product}/>
+             </Col>
+            ))}
+        </Row>
         </div>
         </div>
     );
