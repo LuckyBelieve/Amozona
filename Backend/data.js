@@ -1,18 +1,20 @@
 module.exports.data = {
     products:[
         {
+            _id:"1",
             name:"men Holiday shirts",
             slug:"men-holiday-shirt",
             category:"shirts",
             image:"/Nike-shirt.jpeg",
             price:120,
-            countInStock:10,
+            countInStock:1,
             brand:"Nike",
             rating:"4.5",
             numReview:10,
             description:"hight quality shirt"
         },
         {
+            _id:"2",
             name:"guys colored shirt",
             slug:"guys colored shirt",
             category:"shirts",
@@ -25,6 +27,7 @@ module.exports.data = {
             description:"hight quality shirt for Men"
         },
         {
+            _id:"3",
             name:"japannese pair clothes",
             slug:"japannese-pair-clothes",
             category:"pair-clothes",
@@ -37,6 +40,7 @@ module.exports.data = {
             description:"hight quality pair clothes"
         },
         {
+            _id:"4",
             name:"colored shirt",
             slug:"colored-shirt",
             category:"shirts",

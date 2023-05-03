@@ -18,8 +18,10 @@ import LoadingBox from "../components/loadingBox";
 import MessageBox from "../components/messageBox";
 import { getError } from "../utils/getError";
 import { Store } from "../store";
+import { useNavigate } from "react-router-dom";
 
 const ProductScreen = () => {
+  const naviagate = useNavigate()
   const params = useParams();
   const { slug } = params;
   const [{ loading, isError, products }, dispatch] = useReducer(reducer, {
@@ -47,11 +49,20 @@ const ProductScreen = () => {
     fetchData();
   }, [slug]);
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const addToCartHandler = () => {
+  const {cart} = state;
+  const addToCartHandler = async () => {
+    const existItem = cart.cartItems.find(x=>x._id === product._id);
+      const quantity = existItem ? existItem.quantity +1 : 1;
+      const {data} = await axios.get(burl+`/api/products/${product._id}`);
+      if(data.countInStock < quantity){
+        window.alert("sorry, the product is out of stock");
+        return;
+      }
     ctxDispatch({
       type: "CART_ADD_ITEM",
-      payload: { ...product, quantity: 1 },
+      payload: { ...product, quantity},
     });
+    naviagate('/cart')
   };
   return (
     <div>
