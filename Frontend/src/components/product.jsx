@@ -18,7 +18,7 @@ const Product = (props) => {
             <div className="product-image">
                 <Link to={`/product/${product.slug}`}>
                     <img className="image" src={product.image} alt={product.name}/>
-                </Link>
+                </Link> 
             </div>
             <Card.Body>
                 <Link to={`/product/${product.slug}`} className="text-decoration-none">

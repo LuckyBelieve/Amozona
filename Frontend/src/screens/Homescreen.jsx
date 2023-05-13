@@ -1,6 +1,5 @@
 import { useEffect, useReducer } from "react";
 import axios from 'axios'
-// import { Link } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 import { reducer } from "../reducer/reducer";
 import { burl } from "../utils/url";

@@ -10,10 +10,11 @@ import {
   Row,
 } from "react-bootstrap";
 import MessageBox from "../components/messageBox";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { burl } from "../utils/url";
 const CartScreen = () => {
+  const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
     cart: { cartItems },
@@ -33,6 +34,9 @@ const CartScreen = () => {
   const handleDelete = (item) => {
     ctxDispatch({ type: "CART_REMOVE_ITEM", payload: item });
   };
+  const checkOutHandler = ()=>{
+    navigate("/signin?redirect=/shipping");
+  }
   return (
     <div>
       <Helmet>
@@ -106,6 +110,7 @@ const CartScreen = () => {
                   <Button
                     type="button"
                     variant="success"
+                    onClick={checkOutHandler}
                     disabled={cartItems.length === 0}
                   >
                     Proceed to Checkout

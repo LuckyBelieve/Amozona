@@ -30,12 +30,6 @@ const ProductScreen = () => {
     isError: "",
   });
   const product = products;
-  console.log(product);
-  if (product.image) {
-    console.log(product.image);
-  } else {
-    console.log("image not found");
-  }
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
