@@ -1,4 +1,20 @@
+const bcrypt = require("bcrypt");
+const salt = 10;
 module.exports.data = {
+    users:[
+        {
+          name:"Lucky",
+          email:"test@gmail.com",
+          password:bcrypt.hashSync("lucky",salt),
+          isAdmin:true
+        },
+        {
+            name:"test2",
+            email:"test2@gmail.com",
+            password:bcrypt.hashSync("12345",salt),
+            isAdmin:false
+        }
+    ],
     products:[
         {
             name:"men Holiday shirts",
