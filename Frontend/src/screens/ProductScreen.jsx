@@ -21,7 +21,7 @@ import { Store } from "../store";
 import { useNavigate } from "react-router-dom";
 
 const ProductScreen = () => {
-  const naviagate = useNavigate()
+  const navigate = useNavigate()
   const params = useParams();
   const { slug } = params;
   const [{ loading, isError, products }, dispatch] = useReducer(reducer, {
@@ -56,7 +56,7 @@ const ProductScreen = () => {
       type: "CART_ADD_ITEM",
       payload: { ...product, quantity},
     });
-    naviagate('/cart')
+    navigate('/cart');
   };
   return (
     <div>

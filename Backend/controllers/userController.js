@@ -18,9 +18,9 @@ module.exports.addAllUsers = async (req,res)=>{
 //logging a user in
 
 module.exports.userLogin = async(req,res)=>{
-   const {error} = validateUser(_.pick(req.body,["name","email","password","isAdmin"]));
+   const {error} = validateUser(_.pick(req.body,["email","password"]));
    if(error)res.status(401).send({message:"user validation failed"});
-   const {email,password,isAdmin} = _.pick(req.body,["email","password","isAdmin"])
+   const {email,password} = _.pick(req.body,["email","password"]);
    try {
       const user = await User.findOne({email});
       if(user && (await bcrypt.compare(password,user.password))){
@@ -31,7 +31,7 @@ module.exports.userLogin = async(req,res)=>{
             token:user.generateAuthToken()
          });
       }else{
-         req.status(401).send({message:"incorect email or password"});
+         res.status(401).send({message:"incorect email or password"});
       }
    } catch (err) {
       res.status(401).send({message:err.message});

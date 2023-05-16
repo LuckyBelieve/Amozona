@@ -3,7 +3,7 @@ const { addAllUsers, userLogin, getAllUsers } = require("../controllers/userCont
 const Router = require("express").Router();
 
 Router.get("/addedUsers",addAllUsers);
-Router.post("/login",userLogin);
+Router.post("/signin",userLogin);
 Router.get("/allUsers",getAllUsers);
 
 module.exports = Router;
