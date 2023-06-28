@@ -29,6 +29,7 @@ const HomeScreen = () => {
     return (
         <div>
             <Helmet>
+                
                 <title>amazona</title>
             </Helmet>
             <h1>featured Products</h1>
@@ -37,9 +38,9 @@ const HomeScreen = () => {
         <div className="products">
         <Row>
             { products && products.map(product=>(
-             <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
-             <Product product={product}/>
-             </Col>
+                <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
+                <Product product={product}/>
+                </Col>
             ))}
         </Row>
         </div>
